@@ -1,4 +1,4 @@
-import { Request,Response } from "express";
+import { NextFunction, Request,Response } from "express";
 import bcrypt from 'bcryptjs';
 import { db } from '../models/db';
 import { PassThrough } from "stream";
@@ -8,7 +8,7 @@ import { Jwt } from "jsonwebtoken";
 const JWT_SECRET = 'secret_key'
 
 
-export const registerUser = (req:Request,res:Response)=>{
+export const registerUser = (req:Request,res:Response,next:NextFunction)=>{
     const {name,email,paassword} = req.body;
 
     if(!name || !email || !paassword){
